@@ -1,0 +1,109 @@
+<div class="panel-heading">
+  <div class="row">
+    <div class="col-xs-6">
+      <%= link_to "Log in", new_user_session_path, id: 'login-form-link' %>
+    </div>
+    <div class="col-xs-6">
+      <%= link_to "Register", new_user_registration_path, id: 'register-form-link', class: 'active' %>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%- if resource.errors.present? %>
+          <div class='error-field'>
+            <%= resource.errors.full_messages.join("<br />").html_safe %>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <%= f.text_field :first_name, class: "form-control", placeholder: 'First Name' %>
+          </div>
+          <div class="form-group col-sm-6">
+            <%= f.text_field :last_name, class: "form-control", placeholder: 'Last Name' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :username, class: "form-control", placeholder: 'Username' %>
+        </div>
+        <div class="form-group">
+          <%= f.email_field :email, class: "form-control", placeholder: 'Email' %>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: 'Password' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :dob, "Date of Birth" %>
+          <%= f.text_field :dob, id: 'date', class: 'form-control', placeholder: "MM/DD/YYYY" %>
+        </div>
+        <div class="form-group checkbox">
+          <%= f.check_box :agreed_tas, class: 'custom-control-input' %>
+          <%= f.label :agreed_tas, "
+  I agree to the Terms of Use and the Privacy Policy and confirm that I am at least 18 years of age.", class: 'custom-control-label' %>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Submit">
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  var date = document.getElementById('date');
+
+  function checkValue(str, max) {
+    if (str.charAt(0) !== '0' || str == '00') {
+      var num = parseInt(str);
+      if (isNaN(num) || num <= 0 || num > max) num = 1;
+      str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+    };
+    return str;
+  };
+
+  date.addEventListener('input', function(e) {
+    this.type = 'text';
+    var input = this.value;
+    if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+    var values = input.split('/').map(function(v) {
+      return v.replace(/\D/g, '')
+    });
+    if (values[0]) values[0] = checkValue(values[0], 12);
+    if (values[1]) values[1] = checkValue(values[1], 31);
+    var output = values.map(function(v, i) {
+      return v.length == 2 && i < 2 ? v + ' / ' : v;
+    });
+    this.value = output.join('').substr(0, 14);
+  });
+
+  date.addEventListener('blur', function(e) {
+    this.type = 'text';
+    var input = this.value;
+    var values = input.split('/').map(function(v, i) {
+      return v.replace(/\D/g, '')
+    });
+    var output = '';
+    
+    if (values.length == 3) {
+      var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+      var month = parseInt(values[0]) - 1;
+      var day = parseInt(values[1]);
+      var d = new Date(year, month, day);
+      if (!isNaN(d)) {
+        document.getElementById('result').innerText = d.toString();
+        var dates = [d.getMonth() + 1, d.getDate(), d.getFullYear()];
+        output = dates.map(function(v) {
+          v = v.toString();
+          return v.length == 1 ? '0' + v : v;
+        }).join(' / ');
+      };
+    };
+    this.value = output;
+  });
+</script>

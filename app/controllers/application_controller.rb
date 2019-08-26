@@ -13,10 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    new_user_session_path
+    root_path
   end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :first_name, :last_name, :dob, :agreed_tas])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :first_name, :last_name, :dob, :agreed_tas])
   end
 end

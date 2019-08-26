@@ -1,6 +1,7 @@
 class ContestsController < ApplicationController
   load_and_authorize_resource
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
+  before_action :set_contests_tab
 
   # GET /contests
   # GET /contests.json
@@ -62,10 +63,14 @@ class ContestsController < ApplicationController
     end
   end
 
-  private
+  protected
     # Use callbacks to share common setup or constraints between actions.
     def set_contest
       @contest = Contest.find(params[:id])
+    end
+
+    def set_contests_tab
+      @contests_tab = true
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

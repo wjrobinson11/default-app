@@ -20,14 +20,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/tasks">ParlayApp</a>
+          <%= link_to "ParlayApp", root_path, class: 'navbar-brand' %>
         </div>
 
         <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li class=<%= ("active" if @tasks_tab) %>><a href="/tasks">Tasks</span></a></li>
-            <li class=<%= ("active" if @companies_tab) %>><a href="/companies">Companies</span></a></li>
-            <li class=<%= ("active" if @users_tab) %>><a href="/users">Users</span></a></li>
+            <li class=<%= ("active" if @contests_tab) %>>
+              <%= link_to "Contests", contests_path %>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

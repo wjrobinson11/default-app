@@ -3,13 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-
 # Annotate models with db fields
 gem 'annotate'
 # Use devise for authentication
 gem 'devise'
 # Use cancancan for authorization
 gem 'cancancan'
+# Use figaro for ENV variables
+gem 'figaro'
+# Use Sendgrid for emails
+gem 'sendgrid-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record

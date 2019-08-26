@@ -24,6 +24,14 @@ module ParlayApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    ActionMailer::Base.smtp_settings = {
+      address:        "smtp.sendgrid.net",
+      port:            587,
+      authentication: :plain,
+      user_name:      'apikey',
+      password:       ENV['SENDGRID_API_KEY']
+    }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -22,6 +22,7 @@
 #  sign_in_count          :integer          default(0), not null
 #  state                  :string
 #  timezone               :string
+#  type                   :string           default("Player")
 #  updated_at             :datetime         not null
 #  username               :string
 #
@@ -37,13 +38,29 @@ RSpec.describe User, type: :model do
       dob: "2000-09-09",
       email: "test@example.com",
       password: "password",
-      agreed_tas: true
+      agreed_tas: true,
+      type: "Player"
     )
   end
 
   context "attributes are valid" do
     it "is valid" do
       expect(subject).to be_valid
+    end
+  end
+
+  context "type is not included in User::TYPES" do
+    before(:each) do
+      subject.type = "MegaAdmin"
+    end
+
+    it "is not valid" do
+      expect(subject).to_not be_valid
+    end
+
+    it "adds the correct error" do
+      subject.save
+      expect(subject.errors[:type][0]).to eq "is not included in the list"
     end
   end
 
@@ -71,7 +88,8 @@ RSpec.describe User, type: :model do
         dob: "2000-09-09",
         email: "test@example.com",
         password: "password",
-        agreed_tas: true
+        agreed_tas: true,
+        type: "Player"
       )
       subject.email = user2.email
     end
@@ -200,7 +218,8 @@ RSpec.describe User, type: :model do
         dob: "2000-09-09",
         email: "test@example.com",
         password: "password",
-        agreed_tas: true
+        agreed_tas: true,
+        type: "Player"
       )
       subject.email = user2.username
     end

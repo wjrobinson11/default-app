@@ -14,8 +14,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     if params[:user][:dob]
-      dob = params[:user][:dob].split(" / ")
-      binding.pry
+      dob = params[:user][:dob].gsub(" ", "").split("/")
       params[:user][:dob] = "#{dob[2]}-#{dob[0]}-#{dob[1]}"
     end
     super

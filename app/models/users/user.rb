@@ -22,6 +22,7 @@
 #  sign_in_count          :integer          default(0), not null
 #  state                  :string
 #  timezone               :string
+#  type                   :string           default("Player")
 #  updated_at             :datetime         not null
 #  username               :string
 #
@@ -32,11 +33,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  module Types
+    PLAYER = 'Player'
+    ADMIN = 'Admin'
+
+    def self.all
+      [PLAYER, ADMIN]
+    end
+  end
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :dob, presence: { message: "must be present and formatted MM/DD/YYYY" }
   validates :username, presence: true, uniqueness: true
   validates :agreed_tas, inclusion: { in: [true], message: "must be accepted" }
+  validates :type, inclusion: Types.all
   validate  :validate_age
 
 

@@ -31,5 +31,8 @@ module ParlayApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Load model subdirectories
+    config.autoload_paths += Dir[ config.root.join('app', 'models', '**', '**/') ]
   end
 end

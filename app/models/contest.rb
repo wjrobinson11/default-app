@@ -14,9 +14,19 @@
 #  max_entrants          :integer          indexed
 #  rake                  :decimal(8, 2)
 #  start_week            :integer          indexed
+#  status                :string           default("registering"), indexed
 #  updated_at            :datetime         not null
 #  vegas_bucks           :decimal(8, 2)
 #
 
 class Contest < ApplicationRecord
+	module Status
+		REGISTERING = 'registering'
+		ACTIVE      = 'active'
+		FINISHED    = 'finished'
+
+		def self.all
+			[REGISTERING, ACTIVE, FINISHED]
+		end
+	end
 end

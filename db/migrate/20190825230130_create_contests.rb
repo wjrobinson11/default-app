@@ -1,6 +1,7 @@
 class CreateContests < ActiveRecord::Migration[6.0]
   def change
     create_table :contests do |t|
+      t.string :status, default: 'registering'
       t.decimal :calculated_prize_pool, precision: 8, scale: 2
       t.datetime :entry_deadline
       t.decimal :vegas_bucks, precision: 8, scale: 2
@@ -21,5 +22,6 @@ class CreateContests < ActiveRecord::Migration[6.0]
     add_index :contests, :guaranteed_prize_pool
     add_index :contests, :max_entrants
     add_index :contests, :current_entrants
+    add_index :contests, :status
   end
 end

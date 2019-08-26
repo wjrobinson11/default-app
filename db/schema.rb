@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_230130) do
   enable_extension "plpgsql"
 
   create_table "contests", force: :cascade do |t|
+    t.string "status", default: "registering"
     t.decimal "calculated_prize_pool", precision: 8, scale: 2
     t.datetime "entry_deadline"
     t.decimal "vegas_bucks", precision: 8, scale: 2
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_230130) do
     t.index ["guaranteed_prize_pool"], name: "index_contests_on_guaranteed_prize_pool"
     t.index ["max_entrants"], name: "index_contests_on_max_entrants"
     t.index ["start_week"], name: "index_contests_on_start_week"
+    t.index ["status"], name: "index_contests_on_status"
   end
 
   create_table "users", force: :cascade do |t|

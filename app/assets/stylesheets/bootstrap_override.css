@@ -2,6 +2,23 @@ body .navbar {
 	border-radius: 0;
 }
 
+body .navbar-nav {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+body .navbar-default .navbar-toggle {
+	border-color: transparent;
+}
+
+body .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background: transparent;
+}
+
+body .navbar-toggle.collapsed {
+	background: transparent;
+}
+
 body .navbar-default {
 	background-color: #678bb1;
 }

@@ -34,11 +34,6 @@ RSpec.describe Auth::RegistrationsController, type: :request do
         }.to change{ User.count }.by(1)
       end
 
-      it "assigns Player type to the User" do
-        post "/auth", params: params
-        expect(User.last.type).to eq(User::Types::PLAYER)
-      end
-
       it "correctly sets user's dob" do
         post "/auth", params: params
         expect(User.last.dob).to eq(dob)

@@ -12,17 +12,30 @@ class Ability
   protected
 
   def set_permissions
-    permissions_method = user.class.to_s.underscore
-    send permissions_method
+    return admin_abilities if user.admin
+    return free_abilities if user.roles.blank?
+
+    user.roles.each do |role|
+      permissions_method = role.underscore + "_abilities"
+      send permissions_method
+    end
   end
 
-  def admin
+  def admin_abilities
     # Add array argument for defining specific attributes, omitting array will authorize all attributes
     can :manage, User, [:type, :first_name, :last_name, :dob, :email, :username, :agreed_tas, :password, :password_confirmation]
     can :manage, :all
   end
 
-  def player
+  def free_abilities
     can :read, Contest
+  end
+
+  def basic_abilities
+    
+  end
+
+  def pro_abilities
+
   end
 end

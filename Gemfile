@@ -6,7 +6,7 @@ ruby '2.5.3'
 # Annotate models with db fields
 gem 'annotate'
 # Use devise for authentication
-gem 'devise'
+gem "devise", ">= 4.7.1"
 # Use cancancan for authorization
 gem 'cancancan'
 # Use figaro for ENV variables

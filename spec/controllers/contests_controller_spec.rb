@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ContestsController, type: :request do
-  let(:admin) { create(:admin) }
-  let(:player) { create(:player) }
+  let(:admin) { create(:user, :admin) }
+  let(:player) { create(:user) }
   let(:contest1) { create(:contest) }
   let(:contest2) { create(:contest) }
 

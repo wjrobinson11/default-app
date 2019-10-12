@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_230130) do
+ActiveRecord::Schema.define(version: 2019_10_12_164030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,24 @@ ActiveRecord::Schema.define(version: 2019_08_25_230130) do
     t.index ["status"], name: "index_contests_on_status"
   end
 
+  create_table "role_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "role_id", null: false
+    t.string "status", default: "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id", "user_id"], name: "index_roles_users_on_role_id", unique: true
+    t.index ["status"], name: "index_roles_users_on_status"
+    t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "type", default: "Player"
     t.string "first_name"
     t.string "last_name"
     t.string "username"
@@ -49,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_08_25_230130) do
     t.string "country"
     t.date "dob"
     t.boolean "agreed_tas"
+    t.boolean "admin"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

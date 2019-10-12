@@ -3,7 +3,6 @@
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :users do |t|
-      t.string :type, default: "Player"
       t.string :first_name
       t.string :last_name
       t.string :username
@@ -13,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :country
       t.date :dob
       t.boolean :agreed_tas
+      t.boolean :admin
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

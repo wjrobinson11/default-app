@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	authenticated do
-	  root :to => 'contests#index', as: :authenticated
+	  root :to => 'pages#dashboard', as: :authenticated
 	end
 
 	root to: 'pages#home'
@@ -10,6 +10,4 @@ Rails.application.routes.draw do
     sessions: "auth/sessions",
     passwords: "auth/passwords"
   }
-
-  resources :contests
 end

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: role_users
+#
+#  created_at :datetime         not null
+#  id         :bigint           not null, primary key
+#  role_id    :integer          not null, indexed => [user_id]
+#  status     :string           default("active"), indexed
+#  updated_at :datetime         not null
+#  user_id    :integer          not null, indexed => [role_id], indexed
+#
+
 require 'rails_helper'
 
 RSpec.describe RoleUser, type: :model do

@@ -15,29 +15,6 @@ ActiveRecord::Schema.define(version: 2019_10_12_164030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contests", force: :cascade do |t|
-    t.string "status", default: "registering"
-    t.decimal "calculated_prize_pool", precision: 8, scale: 2
-    t.datetime "entry_deadline"
-    t.decimal "vegas_bucks", precision: 8, scale: 2
-    t.decimal "entry_fee", precision: 8, scale: 2
-    t.decimal "rake", precision: 8, scale: 2
-    t.integer "start_week"
-    t.integer "end_week"
-    t.integer "duration_in_weeks"
-    t.integer "max_entrants"
-    t.integer "current_entrants"
-    t.decimal "guaranteed_prize_pool", precision: 8, scale: 2
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["current_entrants"], name: "index_contests_on_current_entrants"
-    t.index ["duration_in_weeks"], name: "index_contests_on_duration_in_weeks"
-    t.index ["guaranteed_prize_pool"], name: "index_contests_on_guaranteed_prize_pool"
-    t.index ["max_entrants"], name: "index_contests_on_max_entrants"
-    t.index ["start_week"], name: "index_contests_on_start_week"
-    t.index ["status"], name: "index_contests_on_status"
-  end
-
   create_table "role_users", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "role_id", null: false

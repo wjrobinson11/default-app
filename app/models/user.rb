@@ -36,12 +36,14 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :dob, presence: { message: "must be present and formatted MM/DD/YYYY" }
-  validates :username, presence: true, uniqueness: true
-  validates :agreed_tas, inclusion: { in: [true], message: "must be accepted" }
-  validate  :validate_age
+  # validates :username, presence: true, uniqueness: true
+  # validates :agreed_tas, inclusion: { in: [true], message: "must be accepted" }
+  # validate  :validate_age
 
   has_many :role_users
   has_many :roles, through: :role_users
+  has_many :accounts_users
+  has_many :accounts, through: :accounts_users
 
   protected
 

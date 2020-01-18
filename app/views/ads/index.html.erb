@@ -1,0 +1,46 @@
+<nav class="navbar secondary-nav">
+  <div class='secondary-nav-title pull-left'>
+    Manage Ads
+  </div>
+  <div class="pull-right">
+    <%= link_to 'New Ad', new_ad_path, class: 'new-ad-btn btn btn-info btn-sm' %>
+  </div>
+</nav>
+<nav class="navbar secondary-nav">
+  <div class='secondary-nav-title pull-left'>
+    <%= text_field_tag "", nil, placeholder: 'Search', class: 'ads-search form-control' %>
+  </div>
+  <div class="pull-right">
+    Sort By
+    <%= link_to 'Date Created', new_ad_path, class: 'new-ad-btn btn btn-sm sort-filter' %>
+  </div>
+  <div class="pull-right">
+    Filter
+    <%= link_to 'All ads', new_ad_path, class: 'new-ad-btn btn btn-sm sort-filter' %>
+  </div>
+</nav>
+
+<div id="notice"><%= notice %></div>
+
+<div class='full-dark-background'>
+  <%= image_tag 'facebook-image-ad', class: 'ad-placeholder-img' %>
+  <%= image_tag 'facebook-video-ad', class: 'ad-placeholder-img' %>
+  <%= image_tag 'twitter-image-ad', class: 'ad-placeholder-img' %>
+  <%= image_tag 'twitter-video-ad', class: 'ad-placeholder-img' %>
+  <table>
+    <thead>
+    </thead>
+
+    <tbody>
+      <% @ads.each do |ad| %>
+        <tr>
+          <td><%= link_to 'Show', ad %></td>
+          <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
+          <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>

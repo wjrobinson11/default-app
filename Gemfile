@@ -9,8 +9,18 @@ gem 'annotate'
 gem "devise", ">= 4.7.1"
 # Use cancancan for authorization
 gem 'cancancan'
+# Use cloudinary for asset hosting for now
+gem 'cloudinary'
 # Use figaro for ENV variables
 gem 'figaro'
+# Use for icons
+gem "font-awesome-rails"
+# For external network calls
+gem 'httparty'
+# A gem for Instagram Graph API using koala (A lightweight Facebook library supporting the Graph, Marketing, and Atlas APIs, realtime updates, test users, and OAuth.) .
+gem 'instagram_graph_api', git: "https://github.com/SocialCentivPublic/instagram_graph_api.git"
+# A lightweight Facebook library supporting the Graph, Marketing, and Atlas APIs, realtime updates, test users, and OAuth.
+gem 'koala'
 # Use Sendgrid for emails
 gem 'sendgrid-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,6 +68,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,0 +1,204 @@
+body {
+  height: 100vh;
+}
+
+.nav .dropdown-toggle {
+	font-size: 20px;
+}
+
+.nav .dropdown-toggle.group-dropdown {
+	font-size: 14px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: white;
+}
+
+.ad-placeholder-img {
+	height: 300px;
+	margin: 20px;
+	box-shadow: 2px 2px 3px grey;
+}
+
+.secondary-nav {
+	min-height: 50px;
+	border-bottom: 1px solid #cecece;
+}
+
+.secondary-nav-title {
+	font-size: 20px;
+	margin: 10px;
+}
+
+.new-ad-btn.btn {
+	margin: 7px;
+}
+
+.full-dark-background {
+	background-color: whitesmoke;
+	height: 100vh;
+}
+
+.ads-search {
+	height: 32px;
+}
+
+.sort-filter {
+	border: 2px solid black;
+	color: black;
+}
+
+.side-nav {
+	position: absolute;
+	width: 72px;
+	height: 100vh;
+	background-color: #0e1318;
+}
+
+.side-nav ul {
+	list-style: none;
+	padding: 0;
+	font-size: 10px;
+	color: grey;
+}
+
+.side-nav ul li {
+	text-align: center;
+	color: white;
+	opacity: 0.75;
+	padding: 15px 5px;
+}
+.side-nav ul li.active {
+	background-color: #293039;
+	opacity: 1;
+}
+.side-nav ul li:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.side-nav ul li img {
+	width: 25px;
+	border-radius: 2px;
+	margin-bottom: 4px;
+}
+
+.main-container {
+	margin-left: 372px;
+}
+
+.main-content {
+	height: 100vh;
+	padding-top: 50px;
+	background-color: #edf0f2;
+}
+
+/* Facebook image ad */
+
+.ad-content-box {
+	background-color: white;
+	width: 340px;
+	height: 500px;
+	margin: 0 auto;
+	box-shadow: 1px 1px 3px grey;
+}
+
+.ad-content-header {
+	padding: 7px;
+}
+
+.ad-content-logo {
+	border-radius: 50%;
+	float: left;
+	width: 30px;
+}
+
+.ad-content-header-name {
+	font-size: 10px;
+	font-weight: bold;
+	color: #44639E;
+	float: left;
+}
+
+.ad-content-header-name-sponsored-container {
+	margin-left: 5px;
+}
+
+.facebook-sponsored-label {
+	width: 63px;
+  margin-left: -2px;
+  float: left;
+  clear: left;
+}
+
+.ad-content-header-description {
+	clear: both;
+	padding-top: 3px;
+	width: 100%;
+}
+.ad-content-header-description textarea {
+	width: 100%;
+	resize: none;
+	border: none;
+	font-size: 11px;
+}
+
+.ad-content-header-description textarea:hover {
+	outline: 5px auto grey;
+	outline-offset: -2px;
+	cursor: pointer;
+}
+
+.ad-content-header-description textarea:focus {
+	outline: 5px auto #0074ec;
+}
+
+.ad-content-header-description textarea:focus:hover {
+	cursor: text;
+}
+
+.ad-content-hero-image-container.facebook {
+	background-color: silver;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  align-items: center;
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 300px;
+}
+/* end Facebook image ad */
+
+.upload-button {
+	width: 70px;
+}
+
+.upload-button img {
+	width: 100%;
+}
+
+.secondary-side-nav {
+	color: white;
+	overflow: scroll;
+	position: absolute;
+	margin-left: 72px;
+	width: 300px;
+	background-color: #293039;
+	padding-top: 20px;
+	height: 100vh;
+}
+
+.secondary-side-nav ul {
+	list-style: none;
+}
+
+.secondary-side-nav li .ad-placeholder-img {
+	width: 180px;
+	height: 180px;
+}
+
+.secondary-side-nav-title {
+	font-size: 16px;
+}

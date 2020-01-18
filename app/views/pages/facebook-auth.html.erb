@@ -1,0 +1,234 @@
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      params = {
+        access_token: response.authResponse.accessToken,
+        facebook_user_id: response.authResponse.userID
+      }
+      queryStr = '/instagram_accounts_lookup?access_token=' + response.authResponse.accessToken + '&facebook_user_id=' + response.authResponse.userID
+      $.get(queryStr,
+        function(data){
+          $('#long_lived_token').val(data.long_lived_token);
+          content = $.map(data.ig_accounts, function(ig_account){
+            return `
+              <div class='instagram-account clearfix' data-ig_account_id=${ig_account.id} data-ig_account_name=${ig_account.name}  data-ig_account_username=${ig_account.username} data-ig_account_avatar_url=${ig_account.profile_picture_url}>
+                <h4>${ig_account.name}</h4>
+                <img src=${ig_account.profile_picture_url} style="width: 60px; height: 60px;"/>
+                <a href="javascript:void(0)" class='select-ig-account'>Select</a>
+              </div>
+            `
+          })
+          $("#instagram-accounts-container").html(content.join(''));
+        }
+      )
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '445169556373222',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v5.0' // use graph api version 3.2
+    });
+
+    FB.AppEvents.logPageView(); 
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      console.log(response);
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    FB.api('/me', function(response) {
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NR596XF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+<div class="off-canvas-content" data-off-canvas-content>
+      <header class="site-header" role="banner">
+    <div id="scroll-menu-container" class="top-bar-container" data-sticky-container>
+    <div id="scroll-menu" class="sticky" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;" style="width:100%; z-index:10">
+    <nav class="site-navigation top-bar" role="navigation">
+      <div class="top-bar-left">
+        <div class="top-bar-title">
+        <div class="site-desktop-title top-bar-title">
+          <!-- <a href="https://www.respondology.com/" rel="home">Respondology</a> -->
+        </div>
+      </div>
+      </div>
+
+    </nav>
+  </div>
+</div>
+</header>
+  <section class="container">
+    <div class="main-wrap full-width" role="main" style="min-height: 500px;">
+      <div class="auth-container" style="width: 500px; margin: 30px auto;">
+        <h2 style="margin-left: 55px; color: grey;">Instagram Setup</h2>
+        <div class='step1 step clearfix'>
+          <h3>1. Connect Your Facebook Account</h3>
+          <%= hidden_field_tag 'long_lived_token', nil %>
+          <fb:login-button scope="public_profile,instagram_basic,instagram_manage_comments" data-size="large" data-button-type="continue_with"  onlogin="checkLoginState();" style="margin-top: 20px;margin-left: 70px;">
+          </fb:login-button>
+          
+          <div id="status">
+          </div>
+        </div>
+
+        <div class='step2 step clearfix'>
+          <h3>2. Confirm Instagram Account</h3>
+          <div id="instagram-accounts-container" class='clearfix' style='float: left;'>
+
+          </div>
+        </div>
+
+        <div class='step3 step clearfix'>
+          <h3>3. You're all set!</h3>
+        </div>
+
+      </div>
+      <style>
+        .auth-container h3 {
+          color: grey !important;
+        }
+
+        .auth-container .step {
+          min-height: 100px;
+          clear: both;
+          margin-top: 20px;
+        }
+
+        .instagram-account {
+          background-color: whitesmoke;
+          width: 200px;
+          text-align: center;
+          float: left;
+          margin-right: 10px;
+        }
+
+        .instagram-account img {
+          display: block;
+          margin: 0 auto;
+        }
+
+        .select-ig-account {
+          clear: both;
+        }
+      </style>
+    </div>
+  </section>
+    <div class="footer-container" data-sticky-footer>
+      <footer class="footer grid-x grid-padding-x align-middle">
+
+      </footer>
+    </div>
+
+    
+  </div><!-- Close off-canvas content -->
+
+
+  <script type="text/javascript">
+    var et_animation_data = [];
+  </script>
+  <script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.respondology.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var et_pb_custom = {"ajaxurl":"https:\/\/www.respondology.com\/wp-admin\/admin-ajax.php","images_uri":"\/\/www.respondology.com\/wp-content\/themes\/respondology\/images","builder_images_uri":"https:\/\/www.respondology.com\/wp-content\/plugins\/divi-builder\/includes\/builder\/images","et_frontend_nonce":"14bf2c6041","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"7f3459321e","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","is_builder_plugin_used":"1","ignore_waypoints":"no","is_divi_theme_used":"","widget_search_selector":".widget_search","is_ab_testing_active":"","page_id":"1511","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"no","is_shortcode_tracking":""};
+var et_pb_box_shadow_elements = [];
+/* ]]> */
+</script>
+
+<style>
+  .instagram-account:hover {
+    cursor: pointer;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    $('#instagram-accounts-container').on('click', '.instagram-account', function(){
+      igAccountId = $(this).data('ig_account_id');
+      igAccountName = $(this).data('ig_account_name');
+      igAccountUsername = $(this).data('ig_account_username');
+      igAccountAvatarUrl = $(this).data('ig_account_avatar_url');
+      accessToken = $('#long_lived_token').val();
+
+      queryStr = "/social_accounts";
+      params = {
+        id_str: igAccountId,
+        name: igAccountName,
+        username: igAccountUsername,
+        avatar_url: igAccountAvatarUrl,
+        access_token: accessToken,
+        group_id: <%= @group.id %>
+      };
+      $.post(
+        queryStr,
+        params,
+        function(data){
+          $('.auth-container').html('<h2 style="text-align: center;">Thank you for linking your ' + data.screen_name + ' Instagram account!</h2>')
+          setTimeout(function(){
+            if(document.referrer.length > 0){
+              window.location = document.referrer;
+            }
+          }, 2000)
+        }
+      );
+    });
+  });
+
+</script>

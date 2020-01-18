@@ -23,9 +23,9 @@ RSpec.describe Auth::RegistrationsController, type: :request do
         expect(response.status).to eq(302)
       end
 
-      it "redirects to contests page" do
+      it "redirects to correct page" do
         post "/auth", params: params
-        expect(response).to redirect_to(contests_url)
+        expect(response).to redirect_to('/')
       end
 
       it "creates a User" do
@@ -34,9 +34,26 @@ RSpec.describe Auth::RegistrationsController, type: :request do
         }.to change{ User.count }.by(1)
       end
 
-      it "correctly sets user's dob" do
-        post "/auth", params: params
-        expect(User.last.dob).to eq(dob)
+      context "when an account_id is not present" do
+        it "creates an account for the user" do
+          post "/auth", params: params
+          User.last.accounts.count.should == 1
+        end
+
+        it "creates a group for the user" do
+          post "/auth", params: params
+          User.last.accounts.last.groups.count.should == 1
+        end
+      end
+
+      context "when an account_id is present" do
+        it "doesn't create an account for the user" do
+
+        end
+
+        it "doesn't create a group for the user" do
+
+        end
       end
     end
 

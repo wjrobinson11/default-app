@@ -20,4 +20,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :first_name, :last_name, :dob, :agreed_tas])
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :first_name, :last_name, :dob, :agreed_tas])
   end
+
+  def set_account
+    @account = current_user.accounts.last
+  end
+
+  def set_groups
+    @groups = @account.groups
+    @group = @account.current_group || @groups.first
+  end
 end

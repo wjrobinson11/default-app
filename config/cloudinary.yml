@@ -1,0 +1,14 @@
+development:
+  cloud_name: "dt1oywox5"
+  api_key: "547976335611295"
+  api_secret: "zk71OskiYY__mP9xx6M9jzPaKro"
+
+staging:
+  cloud_name: "dt1oywox5"
+  api_key: "547976335611295"
+  api_secret: "zk71OskiYY__mP9xx6M9jzPaKro"
+
+production:
+  cloud_name: "dt1oywox5"
+  api_key: "547976335611295"
+  api_secret: "zk71OskiYY__mP9xx6M9jzPaKro"

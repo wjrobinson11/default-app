@@ -42,6 +42,9 @@ RSpec.describe User, type: :model do
     )
   end
 
+  it { should have_many(:accounts_users) }
+  it { should have_many(:accounts) }
+
   context "attributes are valid" do
     it "is valid" do
       expect(subject).to be_valid
@@ -144,75 +147,6 @@ RSpec.describe User, type: :model do
     it "adds the correct error" do
       subject.save
       expect(subject.errors[:dob][0]).to eq "must be present and formatted MM/DD/YYYY"
-    end
-  end
-
-  context "dob is greater than 18 years ago" do
-    before(:each) do
-      subject.dob = 17.years.ago.to_date
-    end
-
-    it "is not valid" do
-      expect(subject).to_not be_valid
-    end
-
-    it "adds the correct error" do
-      subject.save
-      expect(subject.errors[:dob][0]).to eq "You must be 18 or older to sign up"
-    end
-  end
-
-  context "username is not present" do
-    before(:each) do
-      subject.username = ""
-    end
-
-    it "is not valid" do
-      expect(subject).to_not be_valid
-    end
-
-    it "adds the correct error" do
-      subject.save
-      expect(subject.errors[:username][0]).to eq "can't be blank"
-    end
-  end
-
-  context "agreed_tas is not true" do
-    before(:each) do
-      subject.agreed_tas = false
-    end
-
-    it "is not valid" do
-      expect(subject).to_not be_valid
-    end
-
-    it "adds the correct error" do
-      subject.save
-      expect(subject.errors[:agreed_tas][0]).to eq "must be accepted"
-    end
-  end
-
-  context "username is not unique" do
-    before(:each) do
-      user2 = described_class.create(
-        first_name: "Test",
-        last_name: "Testo",
-        username: "test1234",
-        dob: "2000-09-09",
-        email: "test@example.com",
-        password: "password",
-        agreed_tas: true
-      )
-      subject.email = user2.username
-    end
-
-    it "is not valid" do
-      expect(subject).to_not be_valid
-    end
-
-    it "adds the correct error" do
-      subject.save
-      expect(subject.errors[:username][0]).to eq "has already been taken"
     end
   end
 end

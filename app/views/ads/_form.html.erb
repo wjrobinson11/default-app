@@ -1,0 +1,242 @@
+<%= form_with(model: ad, local: true) do |form| %>
+  <% if ad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ad.errors.count, "error") %> prohibited this ad from being saved:</h2>
+
+      <ul>
+        <% ad.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :platform %>
+    <%= form.text_field :platform %>
+  </div>
+
+  <div class="field">
+    <%= form.label :group_id %>
+    <%= form.number_field :group_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ad_type %>
+    <%= form.text_field :ad_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_1_url %>
+    <%= form.text_field :media_1_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_1_subtitle %>
+    <%= form.text_field :media_1_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_1_title %>
+    <%= form.text_field :media_1_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_1_link %>
+    <%= form.text_field :media_1_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_2_url %>
+    <%= form.text_field :media_2_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_2_title %>
+    <%= form.text_field :media_2_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_2_link %>
+    <%= form.text_field :media_2_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_2_subtitle %>
+    <%= form.text_field :media_2_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_3_url %>
+    <%= form.text_field :media_3_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_3_title %>
+    <%= form.text_field :media_3_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_3_link %>
+    <%= form.text_field :media_3_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_3_subtitle %>
+    <%= form.text_field :media_3_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_4_url %>
+    <%= form.text_field :media_4_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_4_title %>
+    <%= form.text_field :media_4_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_4_link %>
+    <%= form.text_field :media_4_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_4_subtitle %>
+    <%= form.text_field :media_4_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_5_url %>
+    <%= form.text_field :media_5_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_5_title %>
+    <%= form.text_field :media_5_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_5_link %>
+    <%= form.text_field :media_5_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_5_subtitle %>
+    <%= form.text_field :media_5_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_6_url %>
+    <%= form.text_field :media_6_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_6_title %>
+    <%= form.text_field :media_6_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_6_link %>
+    <%= form.text_field :media_6_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_6_subtitle %>
+    <%= form.text_field :media_6_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_7_url %>
+    <%= form.text_field :media_7_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_7_title %>
+    <%= form.text_field :media_7_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_7_link %>
+    <%= form.text_field :media_7_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_7_subtitle %>
+    <%= form.text_field :media_7_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_8_url %>
+    <%= form.text_field :media_8_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_8_title %>
+    <%= form.text_field :media_8_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_8_link %>
+    <%= form.text_field :media_8_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_8_subtitle %>
+    <%= form.text_field :media_8_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_9_url %>
+    <%= form.text_field :media_9_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_9_title %>
+    <%= form.text_field :media_9_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_9_link %>
+    <%= form.text_field :media_9_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_9_subtitle %>
+    <%= form.text_field :media_9_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_10_url %>
+    <%= form.text_field :media_10_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_10_title %>
+    <%= form.text_field :media_10_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_10_link %>
+    <%= form.text_field :media_10_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media_10_subtitle %>
+    <%= form.text_field :media_10_subtitle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scheduled_at %>
+    <%= form.datetime_select :scheduled_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

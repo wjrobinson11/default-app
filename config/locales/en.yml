@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        agreed_tas: "Terms of use"
+        dob: "Date of birth"

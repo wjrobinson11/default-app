@@ -1,4 +1,4 @@
-SENDGRID_API_KEY: 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
+SENDGRID_API_KEY: ""
 
 staging:
   secret_key_base: ""
